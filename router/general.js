@@ -155,7 +155,27 @@ public_users.get('/title/:title', function (req, res) {
   });
 
   //async-await
-  
+  public_users.get('/async/title/:title', async function (req, res) {
+
+    try {
+
+        const title = req.params.title;
+
+        const response = await axios.get(
+            `http://localhost:5000/title/${title}`
+        );
+
+        return res.status(200).json(response.data);
+
+    } catch (error) {
+
+        return res.status(500).json({
+            message: "Error fetching books by title"
+        });
+
+    }
+
+});
   
 
 //  Get book review
